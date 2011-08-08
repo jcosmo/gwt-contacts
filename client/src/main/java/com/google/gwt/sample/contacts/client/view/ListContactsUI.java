@@ -17,16 +17,16 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactsViewUI
+public class ListContactsUI
   extends ListGrid
-  implements ContactsView
+  implements ListContactsView
 {
   private VLayout _layout;
   private ListGrid _contactsTable;
 
   private Presenter _presenter;
 
-  public ContactsViewUI()
+  public ListContactsUI()
   {
     _layout = new VLayout( 15 );
     _layout.setAutoHeight();
