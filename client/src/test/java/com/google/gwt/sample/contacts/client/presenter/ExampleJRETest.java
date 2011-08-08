@@ -21,7 +21,7 @@ import static org.easymock.EasyMock.verify;
 public class ExampleJRETest
   extends TestCase
 {
-  private ContactsPresenter _contactsPresenter;
+  private ListContactsPresenter _listContactsPresenter;
   private ContactsServiceAsync _mockRpcService;
   private EventBus _mockEventBus;
   private ListContactsView _mockViewList;
@@ -32,8 +32,7 @@ public class ExampleJRETest
     _mockRpcService = createStrictMock( ContactsServiceAsync.class );
     _mockEventBus = new SimpleEventBus();
     _mockViewList = createStrictMock( ListContactsView.class );
-    _contactsPresenter =
-      new ContactsPresenter( _mockRpcService, _mockEventBus );
+    _listContactsPresenter = new ListContactsPresenter( _mockRpcService, _mockEventBus, _mockViewList );
   }
 
   public void testDeleteButton()
@@ -41,7 +40,7 @@ public class ExampleJRETest
     _contactDetails = new ArrayList<ContactDetails>();
     _contactDetails.add( new ContactDetails( "0", "1_contact" ) );
     _contactDetails.add( new ContactDetails( "1", "2_contact" ) );
-    _contactsPresenter.setContactDetails( _contactDetails );
+    _listContactsPresenter.setContactDetails( _contactDetails );
 
     _mockRpcService.deleteContacts( isA( ArrayList.class ), isA( AsyncCallback.class ) );
 
@@ -62,20 +61,19 @@ public class ExampleJRETest
       public Object answer()
         throws Throwable
       {
-        _contactDetails = new ArrayList<ContactDetails>();
-        _contactDetails.add( new ContactDetails( "0", "1_contact" ) );
-        final AsyncCallback callback = getCallback();
-        callback.onSuccess( _contactDetails );
+        final ArrayList<ContactDetails> results = new ArrayList<ContactDetails>();
+        results.add( new ContactDetails( "0", "1_contact" ) );
+        getCallback().onSuccess( results );
         return null;
       }
     } );
 
 
     replay( _mockRpcService );
-    _contactsPresenter.onDeleteButtonClicked();
+    _listContactsPresenter.onDeleteButtonClicked();
     verify( _mockRpcService );
 
-    assertEquals( 1, _contactsPresenter.getContactDetails().size() );
+    assertEquals( 1, _listContactsPresenter.getContactDetails().size() );
   }
 
   private AsyncCallback getCallback()
