@@ -9,11 +9,11 @@ import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.sample.contacts.client.place.AppPlaceHistoryMapper;
-import com.google.gwt.sample.contacts.client.place.ListContactsPlace;
 import com.google.gwt.sample.contacts.client.activity.AppActivityMapper;
 import com.google.gwt.sample.contacts.client.activity.EditContactActivity;
 import com.google.gwt.sample.contacts.client.activity.ListContactsActivity;
+import com.google.gwt.sample.contacts.client.place.AppPlaceHistoryMapper;
+import com.google.gwt.sample.contacts.client.place.ListContactsPlace;
 import com.google.gwt.sample.contacts.client.view.EditContactUI;
 import com.google.gwt.sample.contacts.client.view.EditContactView;
 import com.google.gwt.sample.contacts.client.view.ListContactsUI;
@@ -34,7 +34,7 @@ public class ContactClientModule
     bind( EventBus.class ).to( SimpleEventBus.class ).in( Singleton.class );
     bind( SimplePanel.class ).in( Singleton.class );
     bind( PlaceHistoryMapper.class ).to( AppPlaceHistoryMapper.class ).in( Singleton.class );
-    bind( ActivityMapper.class ).to( AppActivityMapper.class ).in( Singleton.class );
+    bind( ActivityMapper.class ).to( AppActivityMapper.class ).asEagerSingleton();
 
     bind( ListContactsView.class ).to( ListContactsUI.class ).in( Singleton.class );
     bind( EditContactView.class ).to( EditContactUI.class ).in( Singleton.class );
