@@ -26,10 +26,18 @@ Getting Started
   to download source as the GWT compiler actually uses the source from
   dependencies to generate javascript. e.g. "buildr artifacts artifacts:sources"
 
+* Install the GWT and GlassFish Integration plugins into IDEA
+
 * Generate IDEA project files. e.g. "buildr idea"
 
 * Download and install GlassFish 3.1.1 or later.
   - Create a LoginRealm named "FireRealm".
+    - In DSE I tend to use an LDAP realm against ActiveDirectory.
+      See http://www.webdavsystem.com/javaserver/doc/authentication/ldap_glassfish
+      Also see IRIS Getting Started Guide.
+    - NOTE: If you want to re-enable roles you should go into
+      Common Tasks/Configurations/server-config/Security and change the parameter
+      "Default Principal To Role Mapping" to true and restart the server.
   - Install the Hibernate plugin
 
 * Setup GlassFish configuration in IDEA and make sure it deploys the contacts
