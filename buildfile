@@ -74,7 +74,8 @@ define 'gwt-contacts' do
                                 :war_module_names => [project('web').iml.id],
                                 :gwt_module_names => [project('client').iml.id, project('shared').iml.id],
                                 :dependencies => [:gwt_user, :gwt_dev, :javax_persistence, projects('shared', 'server')])
-  ipr.add_gwt_configuration("#{project.name}/Contacts.html", project)
+  ipr.add_gwt_configuration("#{project.name}/Contacts.html", project, :module => :client)
+
 
   iml.add_jruby_facet
 
