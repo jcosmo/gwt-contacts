@@ -7,10 +7,6 @@
 
   <allow pkg="java.util"/>
 
-  <!-- For testing -->
-  <allow pkg="org.easymock"/>
-  <allow class="junit.framework.TestCase"/>
-
   <subpackage name="shared">
     <allow class="java.io.Serializable"/>
     <allow class="com.google.gwt.user.client.rpc.RemoteService"/>
@@ -20,7 +16,8 @@
 
   <subpackage name="server">
     <allow pkg="com.google.gwt.sample.contacts.shared"/>
-    <allow class="com.google.gwt.user.server.rpc.RemoteServiceServlet"/>
+    <allow pkg="com.google.gwt.sample.contacts.server"/>
+    <allow pkg="com.google.gwt.user.server.rpc"/>
     <allow pkg="javax.servlet"/>
     <allow pkg="javax.ejb"/>
     <allow pkg="javax.persistence"/>
@@ -28,7 +25,11 @@
 
   <subpackage name="client">
 
+    <allow class="javax.inject.Inject"/>
+    <allow class="javax.inject.Provider"/>
+
     <allow class="com.google.gwt.core.client.EntryPoint" local-only="true"/>
+    <allow class="com.google.gwt.sample.contacts.client.gin.ApplicationInjector" local-only="true"/>
     <allow class="com.google.gwt.core.client.RunAsyncCallback" local-only="true"/>
 
     <allow class="com.google.gwt.core.client.GWT"/>
@@ -39,15 +40,51 @@
     <allow pkg="com.google.gwt.event.shared.*" regex="true"/>
     <allow pkg="com.google.gwt.user.client.*" regex="true"/>
 
-
-    <subpackage name="view">
-      <allow pkg="com.google.gwt.uibinder.client"/>
-      <allow pkg="com.google.gwt.event.dom.client"/>
+    <subpackage name="activity">
+      <allow class="com.google.gwt.activity.shared.Activity"/>
+      <allow class="com.google.gwt.activity.shared.AbstractActivity"/>
+      <allow class="com.google.gwt.event.shared.EventBus"/>
+      <allow class="com.google.gwt.place.shared.Place"/>
     </subpackage>
 
-    <subpackage name="presenter">
-      <allow pkg="com.google.gwt.uibinder.client"/>
-      <allow pkg="com.google.gwt.event.dom.client"/>
+    <subpackage name="place">
+      <allow class="com.google.gwt.place.shared.Place"/>
+      <allow class="com.google.gwt.place.shared.PlaceTokenizer"/>
+      <allow class="com.google.gwt.place.shared.Prefix"/>
+      <allow class="com.google.gwt.place.shared.WithTokenizers"/>
+      <allow class="com.google.gwt.place.shared.PlaceHistoryMapper"/>
+    </subpackage>
+
+    <subpackage name="application">
+      <allow class="com.google.gwt.activity.shared.Activity"/>
+      <allow class="com.google.gwt.activity.shared.ActivityMapper"/>
+      <allow class="com.google.gwt.activity.shared.ActivityManager"/>
+      <allow class="com.google.gwt.place.shared.Place"/>
+      <allow class="com.google.gwt.place.shared.PlaceHistoryHandler"/>
+      <allow class="com.google.gwt.place.shared.PlaceController"/>
+    </subpackage>
+
+    <subpackage name="gin">
+      <!-- Application glue -->
+      <allow pkg="com.google.gwt.activity.shared"/>
+      <allow pkg="com.google.gwt.event.shared"/>
+      <allow pkg="com.google.gwt.place.shared"/>
+
+      <!-- Main UI panel -->
+      <allow class="com.google.gwt.user.client.ui.SimplePanel"/>
+
+      <!-- GIN stuff -->
+      <allow pkg="javax.inject"/>
+      <allow pkg="com.google.inject"/>
+      <allow pkg="com.google.gwt.inject.client"/>
+    </subpackage>
+
+    <subpackage name="view">
+      <allow class="com.google.gwt.user.client.ui.IsWidget"/>
+      <subpackage name="ui">
+        <allow pkg="com.google.gwt.uibinder.client"/>
+        <allow pkg="com.google.gwt.event.dom.client"/>
+      </subpackage>
     </subpackage>
 
   </subpackage>
