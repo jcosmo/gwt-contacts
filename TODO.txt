@@ -7,3 +7,4 @@
 * Create a GWT Buildr extension that drives both the gwt task and the IDEA facet so that options
   like -localWorkers, -style, -XdisableClassMetadata etc are controlled from one location. Make it possible
   to have multiple modules. i.e. a Dev module.
+*  Experiment with GitHub
